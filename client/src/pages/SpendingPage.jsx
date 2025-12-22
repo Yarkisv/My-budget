@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 export default function SpendingPage() {
   const [costs, setCosts] = useState([]);
 
+  const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
+  const [costCategory, setCostCategory] = useState("Категория");
+
   const API = import.meta.env.VITE_API;
 
   useEffect(() => {
@@ -18,24 +22,75 @@ export default function SpendingPage() {
     fetchCosts();
   }, []);
 
-  useEffect(() => {
-    console.log(costs);
-  }, [costs]);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!costCategory) {
+      alert("Введи категорию");
+    }
+
+    try {
+      const response = await axios.post(`${API}/new`, {
+        amount,
+        description,
+        costCategory,
+      });
+
+      setCosts((prev) => [...prev, response.data.data]);
+
+      setAmount("");
+      setDescription("");
+      setCostCategory("Категория");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
+    // style={{
+    //   display: "flex",
+    //   justifyContent: "center",
+    //   alignItems: "center",
+    //   height: "100vh",
+    // }}
     >
+      <div>
+        <form onSubmit={handleSubmit}>
+          <select
+            value={costCategory}
+            onChange={(e) => setCostCategory(e.target.value)}
+          >
+            <option value="">Категория</option>
+            <option value="food">Еда</option>
+            <option value="monthly">Месячные затраты</option>
+            <option value="entertainment">Развлечения</option>
+            <option value="exception">Исключение</option>
+          </select>
+
+          <input
+            type="text"
+            placeholder="Сумма"
+            value={amount}
+            required
+            onChange={(e) => setAmount(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Описание"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+          <button type="submit">Внести</button>
+        </form>
+      </div>
+
       <div>
         <div
           style={{
-            height: "800px",
-            width: "1000px",
+            // height: "800px",
+            // width: "1000px",
             overflowY: "auto",
             border: "1px solid #ccc",
             borderRadius: "8px",
@@ -56,6 +111,7 @@ export default function SpendingPage() {
               >
                 <h2>{cost.amount}</h2>
                 <h3>{cost.category}</h3>
+                <h4>{cost.description_}</h4>
               </div>
             ))
           ) : (

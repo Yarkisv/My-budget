@@ -1,17 +1,17 @@
 import { pool } from "../dbConnection.js";
 
-export const newCost = async (req, res) => {
+export const newIncoming = async (req, res) => {
   try {
-    const { amount, description, costCategory, date } = req.body;
+    const { amount, date } = req.body;
 
     const query =
       "insert into transactions (type, category, transaction_date, description, amount) value (?,?,?,?,?)";
 
     const [result] = await pool.execute(query, [
-      "expense",
-      costCategory,
+      "income",
+      "salary",
       date,
-      description,
+      "salary",
       amount,
     ]);
 
@@ -20,9 +20,9 @@ export const newCost = async (req, res) => {
       data: {
         id: result.insertId,
         type: "expense",
-        category: costCategory,
+        category: "salary",
         transaction_date: date,
-        description_: description,
+        description: "salary",
         amount,
       },
     });

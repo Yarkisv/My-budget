@@ -2,25 +2,27 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function SpendingPage() {
-  const [costs, setCosts] = useState([]);
+  const todayDate = new Date().toISOString().split("T")[0];
 
+  // const [costs, setCosts] = useState([]);
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [costCategory, setCostCategory] = useState("Категория");
+  const [date, setDate] = useState(todayDate);
 
   const API = import.meta.env.VITE_API;
 
-  useEffect(() => {
-    const fetchCosts = async () => {
-      const response = await axios.get(`${API}/get-all`);
+  // useEffect(() => {
+  //   const fetchCosts = async () => {
+  //     const response = await axios.get(`${API}/get-all`);
 
-      if (response.status === 200) {
-        setCosts(response.data);
-      }
-    };
+  //     if (response.status === 200) {
+  //       setCosts(response.data);
+  //     }
+  //   };
 
-    fetchCosts();
-  }, []);
+  //   fetchCosts();
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,9 +36,10 @@ export default function SpendingPage() {
         amount,
         description,
         costCategory,
+        date,
       });
 
-      setCosts((prev) => [...prev, response.data.data]);
+      // setCosts((prev) => [...prev, response.data.data]);
 
       setAmount("");
       setDescription("");
@@ -82,11 +85,17 @@ export default function SpendingPage() {
             onChange={(e) => setDescription(e.target.value)}
             required
           />
+
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
           <button type="submit">Внести</button>
         </form>
       </div>
 
-      <div>
+      {/* <div>
         <div
           style={{
             // height: "800px",
@@ -118,7 +127,7 @@ export default function SpendingPage() {
             <div>Нет расходов</div>
           )}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

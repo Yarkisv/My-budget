@@ -4,8 +4,12 @@ import SpendingPage from "./pages/SpendingPage";
 import ProfitPage from "./pages/ProfitPage";
 import StatisticsPage from "./pages/StatisticsPage";
 import WishlistPage from "./pages/WishlistPage";
+import { useModal } from "./contexts/ModalWindowsContext";
+import AddItemToWishlist from "./components/AddItemToWishlist";
 
 function App() {
+  const { isAddItemToWishlistOpen } = useModal();
+
   return (
     <Router>
       <Routes>
@@ -15,6 +19,7 @@ function App() {
         <Route path="/statistics" element={<StatisticsPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
       </Routes>
+      {isAddItemToWishlistOpen && <AddItemToWishlist />}
     </Router>
   );
 }

@@ -1,0 +1,130 @@
+.formProfit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  width: 674px;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+/* Обёртка для лейбла + инпута */
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  flex: 0 0 250px;
+}
+
+/* Стилизуем лейблы */
+.inputGroup label {
+  margin-bottom: 10px;
+  font-family: "Hero", sans-serif;
+  font-size: 30px;
+  color: #fdfcf9;
+}
+
+/* Инпуты как были */
+.formProfit input[type="date"],
+.formProfit input[type="text"] {
+  width: 250px;
+  height: 38px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #2a2a2a;
+  color: #fdfcf9;
+  opacity: 0.95;
+  text-align: center;
+  font-size: 25px;
+  border: none;
+  outline: none;
+}
+
+/* Кнопка */
+.formProfit button {
+  flex: 1 1 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  display: block;
+  all: unset;
+  cursor: pointer;
+  width: 250px;
+  margin: 227px auto 0; /* сверху 227px, по центру горизонтально, снизу 0 */
+  height: 38px;
+  border-radius: 5px;
+  color: #fdfcf9;
+  text-align: center;
+  font-family: "Hero", sans-serif;
+  font-size: 25px;
+  background-color: #2a2a2a;
+  opacity: 0.95;
+
+  transition: background-color 0.3s ease, transform 0.15s ease,
+    box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.formProfit button:hover {
+  background-color: #3a3a3a;
+  box-shadow: 0 4px 8px rgba(191, 174, 122, 0.3);
+  transform: scale(1.05);
+}
+
+.formProfit button:active {
+  background-color: #1f1f1f;
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0; /* скрываем визуально */
+  cursor: pointer; /* показываем, что кликабельно */
+  position: absolute; /* чтобы занимала весь инпут */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.formProfit input[type="date"] {
+  position: relative; /* чтобы ::-webkit-calendar-picker-indicator позиционировался относительно инпута */
+}
+
+.backButton {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: transparent;
+  border: none;
+  color: #fdfcf9;
+  font-family: "Hero", sans-serif;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px; /* расстояние между иконкой и текстом */
+  padding: 4px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+  z-index: 1000;
+}
+
+.backButton:hover {
+  background-color: rgba(191, 174, 122, 0.2);
+  color: #fdfcf9;
+}
+
+.backButton:active {
+  background-color: rgba(191, 174, 122, 0.4);
+}
+
+.backButton img {
+  width: 24px; /* размер иконки */
+  height: 24px;
+  user-select: none;
+  pointer-events: none; /* чтобы клики шли по кнопке, а не по картинке */
+}

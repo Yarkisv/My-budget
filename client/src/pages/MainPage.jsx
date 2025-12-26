@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import "./MainPage.css";
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -20,11 +21,27 @@ export default function MainPage() {
   };
 
   return (
-    <div>
-      <button onClick={handleSpendingBtnClick}>Трата</button>
-      <button onClick={handleProfitBtnClien}>Прибыль</button>
-      <button onClick={handleStatisticsBtnClick}>Статистика</button>
-      <button onClick={handleWishlistBtnClick}>Wishlist</button>
+    <div className="allBack">
+      <p className="backText">
+        MY <br /> BUDGET
+      </p>
+      <div className="buttonsBack">
+        <div className="allButtons">
+          <button className="buttonsMain" onClick={handleSpendingBtnClick}>
+            Expenses
+          </button>
+          <button className="buttonsMain" onClick={handleProfitBtnClien}>
+            Profit
+          </button>
+          <button className="buttonsMain" onClick={handleStatisticsBtnClick}>
+            Statistics
+          </button>
+        </div>
+      </div>
+
+      <button className="wishButton" onClick={handleWishlistBtnClick}>
+        Wishlist
+      </button>
     </div>
   );
 }

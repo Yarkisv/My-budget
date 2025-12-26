@@ -1,0 +1,98 @@
+.allBack {
+  width: 100vw;
+  height: 100vh;
+  background-color: #111111;
+  position: relative;
+}
+
+.allButtons {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 80px;
+}
+
+.backText {
+  position: absolute;
+  text-align: center;
+  margin: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 200px;
+  color: #bfae7a;
+  font-family: "Hero", sans-serif;
+}
+
+.buttonsMain {
+  all: unset;
+  cursor: pointer;
+  width: 250px;
+  height: 38px;
+  border-radius: 5px;
+  color: #fdfcf9;
+  text-align: center;
+  font-family: "Hero", sans-serif;
+  font-size: 25px;
+  background-color: #2a2a2a;
+  opacity: 0.95;
+
+  transition: background-color 0.3s ease, transform 0.15s ease,
+    box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.buttonsMain:hover {
+  background-color: #3a3a3a;
+  box-shadow: 0 4px 8px rgba(191, 174, 122, 0.3);
+  transform: scale(1.05);
+}
+
+.buttonsMain:active {
+  background-color: #1f1f1f;
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+.buttonsBack {
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(4px);
+}
+
+.wishButton {
+  all: unset;
+  cursor: pointer;
+  width: 150px;
+  height: 38px;
+  border-radius: 5px;
+  color: #fdfcf9;
+  text-align: center;
+  font-family: "Hero", sans-serif;
+  font-size: 25px;
+  background-color: #2a2a2a;
+  opacity: 0.95;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  transform: none;
+
+  transition: background-color 0.3s ease, transform 0.15s ease,
+    box-shadow 0.3s ease;
+  user-select: none;
+  will-change: transform, background-color;
+}
+
+.wishButton:hover {
+  background-color: #3a3a3a;
+  box-shadow: 0 4px 8px rgba(191, 174, 122, 0.3);
+  transform: scale(1.05);
+}
+
+.wishButton:active {
+  background-color: #1f1f1f;
+  transform: scale(0.95);
+  box-shadow: none;
+}

@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
+import "./ProfitPage.css";
+import backArrow from "../images/backArrow.svg";
 
 export default function ProfitPage() {
   const todayDate = new Date().toISOString().split("T")[0];
@@ -25,22 +27,37 @@ export default function ProfitPage() {
   };
 
   return (
-    <div>
-      <form onSubmit={submitIncoming}>
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Сумма"
-          value={amount}
-          required
-          onChange={(e) => setAmount(e.target.value)}
-        />
-        <button type="submit">Внести</button>
-      </form>
+    <div className="allBack">
+      <button className="backButton">
+        <img src={backArrow} alt="Logo" /> Back
+      </button>
+
+      <p className="backText">PROFIT</p>
+      <div className="buttonsBack">
+        <form className="formProfit" onSubmit={submitIncoming}>
+          <div className="inputGroup">
+            <label htmlFor="dateInput">Date</label>
+            <input
+              id="dateInput"
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </div>
+          <div className="inputGroup">
+            <label htmlFor="amountInput">Amount</label>
+            <input
+              id="amountInput"
+              type="text"
+              placeholder="Amount"
+              value={amount}
+              required
+              onChange={(e) => setAmount(e.target.value)}
+            />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   );
 }

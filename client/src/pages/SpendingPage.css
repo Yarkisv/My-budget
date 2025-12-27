@@ -1,0 +1,102 @@
+.formSpending {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.inputGroupSp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+}
+
+.inputGroupSp label {
+  margin-bottom: 10px;
+  font-family: "Hero", sans-serif;
+  font-size: 30px;
+  color: #bfae7a;
+}
+
+.inputGroupSp input,
+.inputGroupSp select {
+  width: 250px;
+  height: 38px;
+  background-color: #2a2a2a;
+  color: #fdfcf9;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 25px;
+  outline: none;
+  opacity: 0.95;
+}
+
+.bottomColumn {
+  margin-top: 155px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  opacity: 0.9;
+}
+
+.descriptionInput {
+  width: 374px;
+  height: 80px;
+  background-color: #2a2a2a;
+  color: #fdfcf9;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-family: "Hero", sans-serif;
+  padding: 12px;
+  resize: none;
+  outline: none;
+  text-align: left;
+  vertical-align: top;
+}
+
+.descriptionInput::placeholder {
+  text-align: left;
+}
+
+.bottomColumn button {
+  all: unset;
+  cursor: pointer;
+  width: 250px;
+  height: 38px;
+  border-radius: 5px;
+  background-color: #2a2a2a;
+  color: #fdfcf9;
+  font-family: "Hero", sans-serif;
+  font-size: 25px;
+  text-align: center;
+  opacity: 0.95;
+
+  transition: background-color 0.3s ease, transform 0.15s ease,
+    box-shadow 0.3s ease;
+}
+
+.bottomColumn button:hover {
+  background-color: #3a3a3a;
+  box-shadow: 0 4px 8px rgba(191, 174, 122, 0.3);
+  transform: scale(1.05);
+}
+
+.bottomColumn button:active {
+  background-color: #1f1f1f;
+  transform: scale(0.95);
+  box-shadow: none;
+}

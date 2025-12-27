@@ -28,9 +28,14 @@ export default function ProfitPage() {
 
   return (
     <div className="allBack">
-      <button className="backButton">
-        <img src={backArrow} alt="Logo" /> Back
-      </button>
+      <div className="headerWrapper1">
+        <button className="backButton">
+          <img src={backArrow} alt="Back" /> Back
+        </button>
+        <div className="totalSummary">
+          Итог за все время: <span className="positiveSum">+33332</span>
+        </div>
+      </div>
 
       <p className="backText">PROFIT</p>
       <div className="buttonsBack">

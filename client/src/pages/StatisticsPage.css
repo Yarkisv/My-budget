@@ -1,0 +1,95 @@
+.SpMonthWrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-family: Hero, sans-serif;
+  color: #fdfcf9;
+  transform: translate(-50%, -50%);
+  width: 1100px;
+  max-height: 450px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.SpMonthList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.headerWrapper1 {
+  position: fixed;
+  top: 20px;
+  left: 15px;
+  width: 1500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: Hero, sans-serif;
+  font-size: 20px;
+  color: #fdfcf9;
+  z-index: 1000;
+}
+
+.SpMonth {
+  width: 1000px;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.15s ease,
+    box-shadow 0.3s ease;
+}
+
+.SpMonth:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.SpMonth.positive {
+  background-color: rgba(76, 175, 125, 0.35);
+}
+
+.SpMonth.negative {
+  background-color: rgba(196, 90, 90, 0.35);
+}
+
+.SpMonth span {
+  font-size: 18px;
+  white-space: nowrap;
+  display: inline-block;
+  text-align: center;
+}
+
+.SpMonth span:nth-child(1) {
+  width: 200px;
+  text-align: left;
+}
+
+.SpMonth span:nth-child(2) {
+  width: 200px;
+  text-align: center;
+}
+
+.SpMonth span:nth-child(3) {
+  width: 200px;
+  text-align: right;
+}
+
+.SpMonthWrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.SpMonthWrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.SpMonthWrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(191, 174, 122, 0.5);
+  border-radius: 3px;
+}

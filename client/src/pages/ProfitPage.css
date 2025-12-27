@@ -10,7 +10,6 @@
   justify-content: space-between;
 }
 
-/* Обёртка для лейбла + инпута */
 .inputGroup {
   display: flex;
   flex-direction: column;
@@ -19,7 +18,6 @@
   flex: 0 0 250px;
 }
 
-/* Стилизуем лейблы */
 .inputGroup label {
   margin-bottom: 10px;
   font-family: "Hero", sans-serif;
@@ -27,23 +25,22 @@
   color: #fdfcf9;
 }
 
-/* Инпуты как были */
 .formProfit input[type="date"],
 .formProfit input[type="text"] {
   width: 250px;
-  height: 38px;
+  height: 40px;
   font-size: 16px;
   border-radius: 5px;
   background-color: #2a2a2a;
   color: #fdfcf9;
   opacity: 0.95;
   text-align: center;
+  cursor: pointer;
   font-size: 25px;
   border: none;
   outline: none;
 }
 
-/* Кнопка */
 .formProfit button {
   flex: 1 1 100%;
   max-width: 200px;
@@ -52,8 +49,8 @@
   all: unset;
   cursor: pointer;
   width: 250px;
-  margin: 227px auto 0; /* сверху 227px, по центру горизонтально, снизу 0 */
-  height: 38px;
+  margin: 227px auto 0;
+  height: 40px;
   border-radius: 5px;
   color: #fdfcf9;
   text-align: center;
@@ -80,9 +77,9 @@
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 0; /* скрываем визуально */
-  cursor: pointer; /* показываем, что кликабельно */
-  position: absolute; /* чтобы занимала весь инпут */
+  opacity: 0;
+  cursor: pointer;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -90,11 +87,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .formProfit input[type="date"] {
-  position: relative; /* чтобы ::-webkit-calendar-picker-indicator позиционировался относительно инпута */
+  position: relative;
 }
 
 .backButton {
-  position: fixed;
   top: 20px;
   left: 20px;
   background: transparent;
@@ -105,7 +101,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 5px; /* расстояние между иконкой и текстом */
+  gap: 5px;
   padding: 4px 10px;
   border-radius: 5px;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -123,8 +119,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .backButton img {
-  width: 24px; /* размер иконки */
+  width: 24px;
   height: 24px;
   user-select: none;
-  pointer-events: none; /* чтобы клики шли по кнопке, а не по картинке */
+  pointer-events: none;
 }

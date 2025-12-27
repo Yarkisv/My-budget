@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import backArrow from "../images/backArrow.svg";
+import "./SpendingPage.css";
 
 export default function SpendingPage() {
   const todayDate = new Date().toISOString().split("T")[0];
@@ -35,41 +37,65 @@ export default function SpendingPage() {
   };
 
   return (
-    <div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <select
-            value={costCategory}
-            onChange={(e) => setCostCategory(e.target.value)}
-          >
-            <option value="">Категория</option>
-            <option value="food">Еда</option>
-            <option value="monthly">Месячные затраты</option>
-            <option value="entertainment">Развлечения</option>
-            <option value="exception">Исключение</option>
-          </select>
+    <div className="allBack">
+      <div className="headerWrapper1">
+        <button className="backButton">
+          <img src={backArrow} alt="Back" /> Back
+        </button>
+        <div className="totalSummary">
+          Итог за все время: <span className="positiveSum">+33332</span>
+        </div>
+      </div>
+      <p className="backText">EXPENSES</p>
+      <div className="buttonsBack">
+        <form className="formSpending" onSubmit={handleSubmit}>
+          <div className="topRow">
+            <div className="inputGroupSp">
+              <label>Category</label>
+              <select
+                value={costCategory}
+                onChange={(e) => setCostCategory(e.target.value)}
+                required
+              >
+                <option value="">Category</option>
+                <option value="food">Food</option>
+                <option value="monthly">Monthly</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="exception">Exception</option>
+              </select>
+            </div>
 
-          <input
-            type="text"
-            placeholder="Сумма"
-            value={amount}
-            required
-            onChange={(e) => setAmount(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Описание"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
+            <div className="inputGroupSp">
+              <label>Amount</label>
+              <input
+                type="text"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                required
+              />
+            </div>
 
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
-          <button type="submit">Внести</button>
+            <div className="inputGroupSp">
+              <label>Date</label>
+              <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className="bottomColumn">
+            <textarea
+              className="descriptionInput"
+              placeholder="Comment"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+
+            <button type="submit">Submit</button>
+          </div>
         </form>
       </div>
     </div>

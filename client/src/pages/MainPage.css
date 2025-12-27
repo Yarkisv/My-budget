@@ -30,7 +30,7 @@
   all: unset;
   cursor: pointer;
   width: 250px;
-  height: 38px;
+  height: 40px;
   border-radius: 5px;
   color: #fdfcf9;
   text-align: center;
@@ -59,7 +59,7 @@
 .buttonsBack {
   width: 100vw;
   height: 100vh;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(10px);
 }
 
 .wishButton {

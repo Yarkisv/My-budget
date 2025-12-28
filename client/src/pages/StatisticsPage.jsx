@@ -16,7 +16,7 @@ export default function StatisticsPage() {
   const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate(-1); // возврат на предыдущую страницу
+    navigate(-1);
   };
 
   const fetchMonthsTransactions = async () => {

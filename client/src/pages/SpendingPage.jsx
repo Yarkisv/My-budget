@@ -66,22 +66,22 @@ export default function SpendingPage() {
         <form className="formSpending" onSubmit={handleSubmit}>
           <div className="topRow">
             <div className="inputGroupSp">
-              <label>Category</label>
+              <label>Категория</label>
               <select
                 value={costCategory}
                 onChange={(e) => setCostCategory(e.target.value)}
                 required
               >
                 <option value="">Category</option>
-                <option value="food">Food</option>
-                <option value="monthly">Monthly</option>
-                <option value="entertainment">Entertainment</option>
-                <option value="exception">Exception</option>
+                <option value="food">Еда</option>
+                <option value="monthly">Месячные</option>
+                <option value="entertainment">Развлечения</option>
+                <option value="exception">Исключения</option>
               </select>
             </div>
 
             <div className="inputGroupSp">
-              <label>Amount</label>
+              <label>Стоимость</label>
               <input
                 type="text"
                 value={amount}
@@ -91,7 +91,7 @@ export default function SpendingPage() {
             </div>
 
             <div className="inputGroupSp">
-              <label>Date</label>
+              <label>Дата</label>
               <input
                 type="date"
                 value={date}
@@ -109,7 +109,7 @@ export default function SpendingPage() {
               required
             />
 
-            <button type="submit">Submit</button>
+            <button type="submit">Добавить</button>
           </div>
         </form>
       </div>

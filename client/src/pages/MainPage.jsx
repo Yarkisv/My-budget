@@ -28,19 +28,19 @@ export default function MainPage() {
       <div className="buttonsBack">
         <div className="allButtons">
           <button className="buttonsMain" onClick={handleSpendingBtnClick}>
-            Expenses
+            Траты
           </button>
           <button className="buttonsMain" onClick={handleProfitBtnClien}>
-            Profit
+            Доход
           </button>
           <button className="buttonsMain" onClick={handleStatisticsBtnClick}>
-            Statistics
+            Статистика
           </button>
         </div>
       </div>
 
       <button className="wishButton" onClick={handleWishlistBtnClick}>
-        Wishlist
+        Вишлист
       </button>
     </div>
   );

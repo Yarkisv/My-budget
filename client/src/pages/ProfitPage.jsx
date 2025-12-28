@@ -56,16 +56,7 @@ export default function ProfitPage() {
       <div className="buttonsBack">
         <form className="formProfit" onSubmit={submitIncoming}>
           <div className="inputGroup">
-            <label htmlFor="dateInput">Date</label>
-            <input
-              id="dateInput"
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
-          </div>
-          <div className="inputGroup">
-            <label htmlFor="amountInput">Amount</label>
+            <label htmlFor="amountInput">Количество</label>
             <input
               id="amountInput"
               type="text"
@@ -75,7 +66,17 @@ export default function ProfitPage() {
               onChange={(e) => setAmount(e.target.value)}
             />
           </div>
-          <button type="submit">Submit</button>
+
+          <div className="inputGroup">
+            <label htmlFor="dateInput">Дата</label>
+            <input
+              id="dateInput"
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </div>
+          <button type="submit">Добавить</button>
         </form>
       </div>
     </div>

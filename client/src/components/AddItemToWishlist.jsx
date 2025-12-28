@@ -43,11 +43,11 @@ export default function AddItemToWishlist() {
           <img className="closeWish" src={CancelWish} alt="Close" />
         </button>
 
-        <h2 className="wishlistModalTitle">Adding</h2>
+        <h2 className="wishlistModalTitle">Добавить</h2>
 
         <form className="wishlistForm" onSubmit={handleAddWishlistItem}>
           <div className="wishlistField">
-            <label>Sum</label>
+            <label>Сумма</label>
             <input
               type="number"
               value={price}
@@ -57,7 +57,7 @@ export default function AddItemToWishlist() {
           </div>
 
           <div className="wishlistField">
-            <label>Name</label>
+            <label>Название</label>
             <input
               type="text"
               value={productName}
@@ -67,7 +67,7 @@ export default function AddItemToWishlist() {
           </div>
 
           <button type="submit" className="wishlistSubmit">
-            Submit
+            Добавить
           </button>
         </form>
       </div>

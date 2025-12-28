@@ -1,19 +1,24 @@
 import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useModal } from "../contexts/ModalWindowsContext";
+import { useTotalBalance } from "../contexts/TotalBalanceContext.jsx";
+import { useNavigate } from "react-router-dom";
+import backArrow from "../images/backArrow.svg";
+import AcceptWish from "../images/AcceptWish.svg";
+import CancelWish from "../images/CancelWish.svg";
+import "./WishlistPage.css";
 
 export default function WishlistPage() {
   const API = import.meta.env.VITE_API;
+  const navigate = useNavigate();
 
   const [wishlistItems, setWishlistItems] = useState([]);
-
   const { isAddItemToWishlistOpen, setAddItemToWishlistOpen } = useModal();
+  const { total } = useTotalBalance();
 
   const fetchWishlistItems = async () => {
     try {
       const response = await axios.get(`${API}/get-wishlist-items`);
-
       setWishlistItems(response.data.items);
     } catch (error) {
       console.log(error);
@@ -22,7 +27,8 @@ export default function WishlistPage() {
 
   const handleRemoveFromWishlist = async (id) => {
     try {
-      const response = await axios.delete(`${API}/remove-wishlist-item/${id}`);
+      await axios.delete(`${API}/remove-wishlist-item/${id}`);
+      fetchWishlistItems();
     } catch (error) {
       console.log(error);
     }
@@ -30,18 +36,11 @@ export default function WishlistPage() {
 
   const handleUpdateStatusClick = async (id) => {
     try {
-      const response = await axios.put(
-        `${API}/update-wishlist-item-status/${id}`
-      );
-
+      await axios.put(`${API}/update-wishlist-item-status/${id}`);
       fetchWishlistItems();
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleAddItemClick = async () => {
-    setAddItemToWishlistOpen(!isAddItemToWishlistOpen);
   };
 
   useEffect(() => {
@@ -49,65 +48,63 @@ export default function WishlistPage() {
   }, []);
 
   return (
-    <div
-      style={{
-        // display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <div
-        style={{
-          height: "800px",
-          width: "1000px",
-          overflowY: "auto",
-          border: "1px solid #ccc",
-          borderRadius: "8px",
-          padding: "10px",
-          backgroundColor: "#fff",
-        }}
-      >
-        {wishlistItems.length > 0 ? (
-          <div>
+    <div className="allBack">
+      <div className="headerWrapper">
+        <button className="backButton" onClick={() => navigate(-1)}>
+          <img src={backArrow} alt="Back" /> Назад
+        </button>
+
+        <div className="totalSummary">
+          итог за все время:{" "}
+          <span className="positiveSum">
+            {total >= 0 ? "+" : "−"}
+            {Math.abs(total)}
+          </span>
+        </div>
+      </div>
+
+      <p className="backText">WISHLIST</p>
+
+      <div className="buttonsBack">
+        <div className="wishlistWrapper">
+          <div className="wishlistList">
             {wishlistItems.map((item) => (
               <div
                 key={item.id}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  border: "1px solid black",
-                  padding: "10px",
-                  marginBottom: "8px",
-                  borderRadius: "6px",
-                  gap: "5px",
-                }}
+                className={`wishlistItem ${
+                  item.status === "completed" ? "completed" : ""
+                }`}
               >
-                <div style={{ display: "flex" }}>
-                  <h2>{`${item.product_name} - ${item.price}`}</h2>
-                </div>
-                <div>
-                  {item.status === "completed" ? (
-                    <h2>{item.status}</h2>
-                  ) : (
-                    <div>
-                      <button onClick={() => handleRemoveFromWishlist(item.id)}>
-                        X
-                      </button>
-                      <button onClick={() => handleUpdateStatusClick(item.id)}>
-                        3
-                      </button>
-                    </div>
-                  )}
-                </div>
+                <span className="wishlistText">
+                  {item.product_name} {item.price}
+                </span>
+
+                {item.status === "completed" ? (
+                  <span className="wishlistStatus">Выполнено</span>
+                ) : (
+                  <div className="wishlistActions">
+                    <button onClick={() => handleRemoveFromWishlist(item.id)}>
+                      <img className="WishImage" src={CancelWish} alt="Back" />
+                    </button>
+                    <button onClick={() => handleUpdateStatusClick(item.id)}>
+                      <img className="WishImage" src={AcceptWish} alt="Back" />
+                    </button>
+                  </div>
+                )}
               </div>
             ))}
           </div>
-        ) : (
-          <div>Wishlist empty</div>
-        )}
+
+          <div className="wishlistDivider" />
+
+          <button
+            className="addWishlistButton"
+            onClick={() => setAddItemToWishlistOpen(!isAddItemToWishlistOpen)}
+          >
+            + добавить
+          </button>
+        </div>
       </div>
-      <button onClick={handleAddItemClick}>+ Добавить</button>
     </div>
   );
 }

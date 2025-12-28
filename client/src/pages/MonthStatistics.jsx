@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./MonthStatistics.css";
 import backArrow from "../images/backArrow.svg";
@@ -12,6 +13,12 @@ export default function MonthStatistics() {
   const { total } = useTotalBalance();
 
   const API = import.meta.env.VITE_API;
+
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   const fetchMonthStatistics = async () => {
     try {
@@ -46,7 +53,7 @@ export default function MonthStatistics() {
   return (
     <div className="allBack">
       <div className="headerWrapper1">
-        <button className="backButton">
+        <button className="backButton" onClick={handleBack}>
           <img src={backArrow} alt="Back" /> Back
         </button>
         <div className="totalSummary">
@@ -62,7 +69,7 @@ export default function MonthStatistics() {
       <div className="buttonsBack">
         <div className="periodBlock">
           период:
-          <span className="periodBadge">01.12.2025 - 01.01.2026</span>
+          <span className="periodBadge">{period}</span>
         </div>
         <div className="transactionsListWrapper">
           <div className="transactionsList">

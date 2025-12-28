@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useTotalBalance } from "../contexts/TotalBalanceContext.jsx";
+import { useNavigate } from "react-router-dom";
 import backArrow from "../images/backArrow.svg";
 import "./SpendingPage.css";
 
@@ -12,9 +13,15 @@ export default function SpendingPage() {
   const [costCategory, setCostCategory] = useState("Категория");
   const [date, setDate] = useState(todayDate);
 
-  const { total } = useTotalBalance();
+  const { total, fetchTotal } = useTotalBalance();
 
   const API = import.meta.env.VITE_API;
+
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,6 +41,7 @@ export default function SpendingPage() {
       setAmount("");
       setDescription("");
       setCostCategory("Категория");
+      fetchTotal();
     } catch (error) {
       console.log(error);
     }
@@ -42,7 +50,7 @@ export default function SpendingPage() {
   return (
     <div className="allBack">
       <div className="headerWrapper1">
-        <button className="backButton">
+        <button className="backButton" onClick={handleBack}>
           <img src={backArrow} alt="Back" /> Back
         </button>
         <div className="totalSummary">

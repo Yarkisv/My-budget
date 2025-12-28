@@ -15,6 +15,10 @@ export default function StatisticsPage() {
 
   const navigate = useNavigate();
 
+  const handleBack = () => {
+    navigate(-1); // возврат на предыдущую страницу
+  };
+
   const fetchMonthsTransactions = async () => {
     try {
       const response = await axios.get(`${API}/all-transactions-by-month`);
@@ -40,7 +44,7 @@ export default function StatisticsPage() {
   return (
     <div className="allBack">
       <div className="headerWrapper1">
-        <button className="backButton">
+        <button className="backButton" onClick={handleBack}>
           <img src={backArrow} alt="Back" /> Back
         </button>
         <div className="totalSummary">

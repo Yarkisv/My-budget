@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useTotalBalance } from "../contexts/TotalBalanceContext.jsx";
+import { useNavigate } from "react-router-dom";
 import "./ProfitPage.css";
 import backArrow from "../images/backArrow.svg";
 
@@ -12,7 +13,13 @@ export default function ProfitPage() {
   const [date, setDate] = useState(todayDate);
   const [amount, setAmount] = useState("");
 
-  const { total } = useTotalBalance();
+  const { total, fetchTotal } = useTotalBalance();
+
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   const submitIncoming = async (e) => {
     e.preventDefault();
@@ -24,6 +31,7 @@ export default function ProfitPage() {
       });
 
       setAmount("");
+      fetchTotal();
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +40,7 @@ export default function ProfitPage() {
   return (
     <div className="allBack">
       <div className="headerWrapper1">
-        <button className="backButton">
+        <button className="backButton" onClick={handleBack}>
           <img src={backArrow} alt="Back" /> Back
         </button>
         <div className="totalSummary">

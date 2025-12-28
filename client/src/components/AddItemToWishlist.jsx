@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useModal } from "../contexts/ModalWindowsContext";
+import CancelWish from "../images/CancelWish.svg";
+import "./AddItemToWishlist.css";
 import axios from "axios";
 
 export default function AddItemToWishlist() {
@@ -7,11 +9,10 @@ export default function AddItemToWishlist() {
   const [price, setPrice] = useState("");
 
   const API = import.meta.env.VITE_API;
-
   const { isAddItemToWishlistOpen, setAddItemToWishlistOpen } = useModal();
 
   const handleCloseWindow = () => {
-    setAddItemToWishlistOpen(!isAddItemToWishlistOpen);
+    setAddItemToWishlistOpen(false);
   };
 
   const handleAddWishlistItem = async (e) => {
@@ -24,108 +25,49 @@ export default function AddItemToWishlist() {
       });
 
       if (response.status === 201) {
-        setAddItemToWishlistOpen(!isAddItemToWishlistOpen);
+        setAddItemToWishlistOpen(false);
+        setProductName("");
+        setPrice("");
       }
     } catch (error) {
       console.log(error);
     }
   };
 
+  if (!isAddItemToWishlistOpen) return null;
+
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        zIndex: 1000,
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: "#1e1e2f",
-          padding: "30px",
-          borderRadius: "12px",
-          width: "300px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-          color: "#fff",
-          position: "relative",
-          fontFamily: "sans-serif",
-        }}
-      >
-        <button
-          onClick={handleCloseWindow}
-          style={{
-            position: "absolute",
-            top: "10px",
-            right: "10px",
-            background: "transparent",
-            border: "none",
-            color: "#fff",
-            fontSize: "18px",
-            cursor: "pointer",
-          }}
-        >
-          ×
+    <div className="wishlistModalOverlay">
+      <div className="wishlistModal">
+        <button className="wishlistModalClose" onClick={handleCloseWindow}>
+          <img className="closeWish" src={CancelWish} alt="Close" />
         </button>
 
-        <h2 style={{ textAlign: "center", margin: 0 }}>Добавление</h2>
+        <h2 className="wishlistModalTitle">Adding</h2>
 
-        <form onSubmit={handleAddWishlistItem}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-            <label>Сумма</label>
+        <form className="wishlistForm" onSubmit={handleAddWishlistItem}>
+          <div className="wishlistField">
+            <label>Sum</label>
             <input
-              type="text"
-              placeholder="0"
+              type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              style={{
-                padding: "8px",
-                borderRadius: "6px",
-                border: "1px solid #555",
-                backgroundColor: "#2a2a3f",
-                color: "#fff",
-              }}
+              placeholder="300"
             />
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-            <label>Название</label>
+          <div className="wishlistField">
+            <label>Name</label>
             <input
               type="text"
-              placeholder="Название товара"
               value={productName}
               onChange={(e) => setProductName(e.target.value)}
-              style={{
-                padding: "8px",
-                borderRadius: "6px",
-                border: "1px solid #555",
-                backgroundColor: "#2a2a3f",
-                color: "#fff",
-              }}
+              placeholder="Компьютер"
             />
           </div>
 
-          <button
-            type="submit"
-            style={{
-              padding: "10px",
-              borderRadius: "6px",
-              border: "none",
-              backgroundColor: "#8b7c5d",
-              color: "#fff",
-              fontWeight: "bold",
-              cursor: "pointer",
-            }}
-          >
-            внести
+          <button type="submit" className="wishlistSubmit">
+            Submit
           </button>
         </form>
       </div>

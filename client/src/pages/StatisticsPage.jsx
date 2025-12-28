@@ -3,10 +3,13 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./StatisticsPage.css";
+import { useTotalBalance } from "../contexts/TotalBalanceContext.jsx";
 import backArrow from "../images/backArrow.svg";
 
 export default function StatisticsPage() {
   const [monthsTransactions, setMonthsTransactions] = useState([]);
+
+  const { total } = useTotalBalance();
 
   const API = import.meta.env.VITE_API;
 
@@ -16,7 +19,11 @@ export default function StatisticsPage() {
     try {
       const response = await axios.get(`${API}/all-transactions-by-month`);
 
-      setMonthsTransactions(response.data);
+      const sorted = [...response.data].sort(
+        (a, b) => new Date(b.month) - new Date(a.month)
+      );
+
+      setMonthsTransactions(sorted);
     } catch (error) {
       console.log(`Server error: ${error}`);
     }
@@ -37,7 +44,11 @@ export default function StatisticsPage() {
           <img src={backArrow} alt="Back" /> Back
         </button>
         <div className="totalSummary">
-          Итог за все время: <span className="positiveSum">+33332</span>
+          Итог за все время:{" "}
+          <span className="positiveSum">
+            {total >= 0 ? "+" : "−"}
+            {Math.abs(total).toFixed(2)}
+          </span>
         </div>
       </div>
 

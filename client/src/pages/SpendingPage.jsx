@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useTotalBalance } from "../contexts/TotalBalanceContext.jsx";
 import backArrow from "../images/backArrow.svg";
 import "./SpendingPage.css";
 
@@ -10,6 +11,8 @@ export default function SpendingPage() {
   const [description, setDescription] = useState("");
   const [costCategory, setCostCategory] = useState("Категория");
   const [date, setDate] = useState(todayDate);
+
+  const { total } = useTotalBalance();
 
   const API = import.meta.env.VITE_API;
 
@@ -43,7 +46,11 @@ export default function SpendingPage() {
           <img src={backArrow} alt="Back" /> Back
         </button>
         <div className="totalSummary">
-          Итог за все время: <span className="positiveSum">+33332</span>
+          Итог за все время:{" "}
+          <span className="positiveSum">
+            {total >= 0 ? "+" : "−"}
+            {Math.abs(total).toFixed(2)}
+          </span>
         </div>
       </div>
       <p className="backText">EXPENSES</p>

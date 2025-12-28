@@ -138,3 +138,7 @@
 .monthTotal .positive {
   color: #7ee2a8;
 }
+
+.monthTotal .negative {
+  color: red;
+}

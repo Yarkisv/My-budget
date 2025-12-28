@@ -91,7 +91,6 @@ export default function WishlistPage() {
                     <h2>{item.status}</h2>
                   ) : (
                     <div>
-                      <button>1</button>
                       <button onClick={() => handleRemoveFromWishlist(item.id)}>
                         X
                       </button>

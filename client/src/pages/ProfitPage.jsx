@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
+import { useTotalBalance } from "../contexts/TotalBalanceContext.jsx";
 import "./ProfitPage.css";
 import backArrow from "../images/backArrow.svg";
 
@@ -10,6 +11,8 @@ export default function ProfitPage() {
 
   const [date, setDate] = useState(todayDate);
   const [amount, setAmount] = useState("");
+
+  const { total } = useTotalBalance();
 
   const submitIncoming = async (e) => {
     e.preventDefault();
@@ -33,7 +36,11 @@ export default function ProfitPage() {
           <img src={backArrow} alt="Back" /> Back
         </button>
         <div className="totalSummary">
-          Итог за все время: <span className="positiveSum">+33332</span>
+          Итог за все время:{" "}
+          <span className="positiveSum">
+            {total >= 0 ? "+" : "−"}
+            {Math.abs(total).toFixed(2)}
+          </span>
         </div>
       </div>
 

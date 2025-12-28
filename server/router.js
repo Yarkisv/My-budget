@@ -7,6 +7,8 @@ import { removeWishlistItem } from "./services/removeWishlistItem.service.js";
 import { updateWishlistItemStatus } from "./services/updateWishlistItemStatus.service.js";
 import { getAllTransactionsByMonth } from "./services/getAllTransactionsByMonth.service.js";
 import { getMonthStatistics } from "./services/getMonthStatistics.service.js";
+import { getTotalBalance } from "./services/getTotalBalance.service.js";
+import { newWishlistItem } from "./services/newWishlistItem.service.js";
 
 const router = express.Router();
 
@@ -40,6 +42,14 @@ router.get("/all-transactions-by-month", (req, res) => {
 
 router.get("/month-statistics/:period", (req, res) => {
   getMonthStatistics(req, res);
+});
+
+router.get("/total-balance", (req, res) => {
+  getTotalBalance(req, res);
+});
+
+router.post("/new-wishlist-item", (req, res) => {
+  newWishlistItem(req, res);
 });
 
 export default router;

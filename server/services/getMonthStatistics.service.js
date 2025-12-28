@@ -18,7 +18,7 @@ export const getMonthStatistics = async (req, res) => {
       nextMonthNumber = Number(month) + 1;
     }
 
-    console.log(`${year}-${month}-01`, `${nextYear}-${nextMonthNumber}-01`);
+    // console.log(`${year}-${month}-01`, `${nextYear}-${nextMonthNumber}-01`);
 
     const query =
       "select * from transactions where transaction_date >= ? and transaction_date < ? order by transaction_date";
